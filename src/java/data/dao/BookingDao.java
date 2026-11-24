@@ -15,6 +15,7 @@ public interface BookingDao {
     boolean updatePayStatus(int id, String payStatus);
     boolean assignRoom(int bookingId, int roomId);
     void cancelExpiredBookings();
+    boolean delete(int id);
     int countTotalBookings();
     int countActiveGuests();
     double calculateTotalRevenue();

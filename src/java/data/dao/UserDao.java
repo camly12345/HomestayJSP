@@ -10,4 +10,5 @@ public interface UserDao {
     boolean insertUser(String name, String email, String phone, String password, String role);
     List<User> findAllCustomers();
     List<User> findAll();
+    boolean delete(int id);
 }

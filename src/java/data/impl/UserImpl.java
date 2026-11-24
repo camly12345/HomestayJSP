@@ -118,4 +118,17 @@ public class UserImpl implements UserDao {
         }
         return list;
     }
+
+    @Override
+    public boolean delete(int id) {
+        String sql = "DELETE FROM users WHERE id = ? AND role != 'admin'";
+        try (Connection con = MySQLDriver.getConnection();
+             PreparedStatement sttm = con.prepareStatement(sql)) {
+            sttm.setInt(1, id);
+            return sttm.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }

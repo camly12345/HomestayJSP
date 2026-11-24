@@ -162,13 +162,37 @@ public class RoomImpl implements RoomDao {
     }
 
     @Override
+    public boolean isRoomAvailable(int roomId, Date checkIn, Date checkOut) {
+        data.dao.Database.getBookingDao().cancelExpiredBookings();
+        String sql = "SELECT COUNT(*) FROM bookings "
+                   + "WHERE room_id = ? AND status NOT IN ('cancelled', 'checkedout') "
+                   + "AND NOT (status = 'pending' AND pay_status = 'unpaid' AND pay_method = 'transfer' AND created_at < DATE_SUB(NOW(), INTERVAL 1 MINUTE)) "
+                   + "AND check_in < ? AND check_out > ?";
+        try (Connection con = MySQLDriver.getConnection();
+             PreparedStatement sttm = con.prepareStatement(sql)) {
+            sttm.setInt(1, roomId);
+            sttm.setDate(2, checkOut);
+            sttm.setDate(3, checkIn);
+            try (ResultSet rs = sttm.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) == 0;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public boolean insert(Room room) {
-        String sql = "INSERT INTO rooms(code, room_type_id, status) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO rooms(code, room_type_id, area, status) VALUES(?, ?, ?, ?)";
         try (Connection con = MySQLDriver.getConnection();
              PreparedStatement sttm = con.prepareStatement(sql)) {
             sttm.setString(1, room.getCode());
             sttm.setInt(2, room.getRoomTypeId());
-            sttm.setInt(3, room.getStatus());
+            sttm.setString(3, room.getArea() != null ? room.getArea() : "Tầng 1");
+            sttm.setInt(4, room.getStatus());
             return sttm.executeUpdate() > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -178,13 +202,14 @@ public class RoomImpl implements RoomDao {
 
     @Override
     public boolean update(Room room) {
-        String sql = "UPDATE rooms SET code = ?, room_type_id = ?, status = ? WHERE id = ?";
+        String sql = "UPDATE rooms SET code = ?, room_type_id = ?, area = ?, status = ? WHERE id = ?";
         try (Connection con = MySQLDriver.getConnection();
              PreparedStatement sttm = con.prepareStatement(sql)) {
             sttm.setString(1, room.getCode());
             sttm.setInt(2, room.getRoomTypeId());
-            sttm.setInt(3, room.getStatus());
-            sttm.setInt(4, room.getId());
+            sttm.setString(3, room.getArea() != null ? room.getArea() : "Tầng 1");
+            sttm.setInt(4, room.getStatus());
+            sttm.setInt(5, room.getId());
             return sttm.executeUpdate() > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();

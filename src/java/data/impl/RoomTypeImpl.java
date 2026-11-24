@@ -65,7 +65,7 @@ public class RoomTypeImpl implements RoomTypeDao {
 
     @Override
     public boolean insert(RoomType type) {
-        String sql = "INSERT INTO room_types(name, description, price, capacity, bed, image) VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO room_types(name, description, price, capacity, bed, image, rules, amenities) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection con = MySQLDriver.getConnection();
              PreparedStatement sttm = con.prepareStatement(sql)) {
             sttm.setString(1, type.getName());
@@ -74,6 +74,8 @@ public class RoomTypeImpl implements RoomTypeDao {
             sttm.setInt(4, type.getCapacity());
             sttm.setInt(5, type.getBed());
             sttm.setString(6, type.getImage());
+            sttm.setString(7, type.getRules());
+            sttm.setString(8, type.getAmenities());
             return sttm.executeUpdate() > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -83,7 +85,7 @@ public class RoomTypeImpl implements RoomTypeDao {
 
     @Override
     public boolean update(RoomType type) {
-        String sql = "UPDATE room_types SET name = ?, description = ?, price = ?, capacity = ?, bed = ?, image = ? WHERE id = ?";
+        String sql = "UPDATE room_types SET name = ?, description = ?, price = ?, capacity = ?, bed = ?, image = ?, rules = ?, amenities = ? WHERE id = ?";
         try (Connection con = MySQLDriver.getConnection();
              PreparedStatement sttm = con.prepareStatement(sql)) {
             sttm.setString(1, type.getName());
@@ -92,7 +94,9 @@ public class RoomTypeImpl implements RoomTypeDao {
             sttm.setInt(4, type.getCapacity());
             sttm.setInt(5, type.getBed());
             sttm.setString(6, type.getImage());
-            sttm.setInt(7, type.getId());
+            sttm.setString(7, type.getRules());
+            sttm.setString(8, type.getAmenities());
+            sttm.setInt(9, type.getId());
             return sttm.executeUpdate() > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();

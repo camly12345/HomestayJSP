@@ -8,15 +8,17 @@ public class Room {
     private String code;
     private int roomTypeId;
     private String roomTypeName;
+    private String area;
     private double price;
     private int status; // 1: active, 0: inactive
 
     public Room() {}
 
-    public Room(int id, String code, int roomTypeId, int status) {
+    public Room(int id, String code, int roomTypeId, String area, int status) {
         this.id = id;
         this.code = code;
         this.roomTypeId = roomTypeId;
+        this.area = area;
         this.status = status;
     }
 
@@ -24,6 +26,11 @@ public class Room {
         this.id = rs.getInt("id");
         this.code = rs.getString("code");
         this.roomTypeId = rs.getInt("room_type_id");
+        try {
+            this.area = rs.getString("area");
+        } catch (Exception ignored) {
+            this.area = "Tầng 1";
+        }
         this.status = rs.getInt("status");
         try {
             this.roomTypeName = rs.getString("room_type_name");
@@ -44,6 +51,9 @@ public class Room {
 
     public String getRoomTypeName() { return roomTypeName; }
     public void setRoomTypeName(String roomTypeName) { this.roomTypeName = roomTypeName; }
+
+    public String getArea() { return area != null ? area : "Tầng 1"; }
+    public void setArea(String area) { this.area = area; }
 
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }

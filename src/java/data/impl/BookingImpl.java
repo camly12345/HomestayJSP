@@ -206,6 +206,19 @@ public class BookingImpl implements BookingDao {
     }
 
     @Override
+    public boolean delete(int id) {
+        String sql = "DELETE FROM bookings WHERE id = ?";
+        try (Connection con = MySQLDriver.getConnection();
+             PreparedStatement sttm = con.prepareStatement(sql)) {
+            sttm.setInt(1, id);
+            return sttm.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
     public int countTotalBookings() {
         String sql = "SELECT COUNT(*) FROM bookings";
         try (Connection con = MySQLDriver.getConnection();

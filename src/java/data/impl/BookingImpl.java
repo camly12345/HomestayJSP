@@ -192,6 +192,20 @@ public class BookingImpl implements BookingDao {
     }
 
     @Override
+    public void cancelExpiredBookings() {
+        String sql = "UPDATE bookings SET status = 'cancelled' "
+                   + "WHERE status = 'pending' AND pay_status = 'unpaid' "
+                   + "AND pay_method = 'transfer' "
+                   + "AND created_at < DATE_SUB(NOW(), INTERVAL 1 MINUTE)";
+        try (Connection con = MySQLDriver.getConnection();
+             PreparedStatement sttm = con.prepareStatement(sql)) {
+            sttm.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
     public int countTotalBookings() {
         String sql = "SELECT COUNT(*) FROM bookings";
         try (Connection con = MySQLDriver.getConnection();

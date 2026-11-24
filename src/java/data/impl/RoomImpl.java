@@ -83,6 +83,9 @@ public class RoomImpl implements RoomDao {
 
     @Override
     public int countAvailable(int roomTypeId, Date checkIn, Date checkOut) {
+        // Tự động quét và hủy các đơn chuyển khoản quá hạn 1 phút
+        data.dao.Database.getBookingDao().cancelExpiredBookings();
+
         if (checkIn == null || checkOut == null) {
             String sql = "SELECT COUNT(*) FROM rooms WHERE room_type_id = ? AND status = 1";
             try (Connection con = MySQLDriver.getConnection();
@@ -100,6 +103,7 @@ public class RoomImpl implements RoomDao {
         String sql = "SELECT COUNT(*) FROM rooms r WHERE r.room_type_id = ? AND r.status = 1 "
                    + "AND r.id NOT IN (SELECT b.room_id FROM bookings b WHERE b.room_id IS NOT NULL "
                    + "AND b.status NOT IN ('cancelled', 'checkedout') "
+                   + "AND NOT (b.status = 'pending' AND b.pay_status = 'unpaid' AND b.pay_method = 'transfer' AND b.created_at < DATE_SUB(NOW(), INTERVAL 1 MINUTE)) "
                    + "AND b.check_in < ? AND b.check_out > ?)";
         try (Connection con = MySQLDriver.getConnection();
              PreparedStatement sttm = con.prepareStatement(sql)) {
@@ -117,6 +121,9 @@ public class RoomImpl implements RoomDao {
 
     @Override
     public Room findFirstAvailableRoom(int roomTypeId, Date checkIn, Date checkOut) {
+        // Tự động quét và hủy các đơn chuyển khoản quá hạn 1 phút
+        data.dao.Database.getBookingDao().cancelExpiredBookings();
+
         if (checkIn == null || checkOut == null) {
             String sql = "SELECT r.*, rt.name AS room_type_name, rt.price FROM rooms r "
                        + "JOIN room_types rt ON r.room_type_id = rt.id "
@@ -138,6 +145,7 @@ public class RoomImpl implements RoomDao {
                    + "WHERE r.room_type_id = ? AND r.status = 1 "
                    + "AND r.id NOT IN (SELECT b.room_id FROM bookings b WHERE b.room_id IS NOT NULL "
                    + "AND b.status NOT IN ('cancelled', 'checkedout') "
+                   + "AND NOT (b.status = 'pending' AND b.pay_status = 'unpaid' AND b.pay_method = 'transfer' AND b.created_at < DATE_SUB(NOW(), INTERVAL 1 MINUTE)) "
                    + "AND b.check_in < ? AND b.check_out > ?) LIMIT 1";
         try (Connection con = MySQLDriver.getConnection();
              PreparedStatement sttm = con.prepareStatement(sql)) {

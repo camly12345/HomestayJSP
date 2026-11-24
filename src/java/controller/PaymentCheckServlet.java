@@ -19,7 +19,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import model.Booking;
 
-@WebServlet(name = "PaymentCheckServlet", urlPatterns = {"/api/payment-status", "/api/simulate-payment"})
+@WebServlet(name = "PaymentCheckServlet", urlPatterns = {"/api/payment-status", "/api/simulate-payment", "/api/cancel-expired"})
 public class PaymentCheckServlet extends HttpServlet {
 
     private static final String CLIENT_ID = "55f0c23c-5bbc-4c2e-b6d9-a2470b307a14";
@@ -99,8 +99,24 @@ public class PaymentCheckServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
-        String code = request.getParameter("code");
+        String uri = request.getRequestURI();
         PrintWriter out = response.getWriter();
+
+        if (uri.contains("cancel-expired")) {
+            String code = request.getParameter("code");
+            if (code != null && !code.trim().isEmpty()) {
+                BookingDao bookingDao = Database.getBookingDao();
+                Booking booking = bookingDao.findByCode(code.trim());
+                if (booking != null && "unpaid".equalsIgnoreCase(booking.getPayStatus()) && "pending".equalsIgnoreCase(booking.getStatus())) {
+                    bookingDao.updateStatus(booking.getId(), "cancelled");
+                }
+            }
+            Database.getBookingDao().cancelExpiredBookings();
+            out.print("{\"success\":true,\"message\":\"Expired bookings cancelled\"}");
+            return;
+        }
+
+        String code = request.getParameter("code");
 
         if (code == null || code.trim().isEmpty()) {
             out.print("{\"success\":false,\"message\":\"Missing booking code\"}");

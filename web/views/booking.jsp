@@ -418,7 +418,7 @@
         if (checkPaymentInterval) clearInterval(checkPaymentInterval);
 
         const timerText = document.getElementById('timerText');
-        secondsLeft = 30;
+        secondsLeft = 60; // 1 phút (60 giây)
 
         checkPaymentInterval = setInterval(() => {
             secondsLeft--;
@@ -428,7 +428,20 @@
 
             if (secondsLeft <= 0) {
                 clearInterval(checkPaymentInterval);
-                timerText.innerText = "Mã QR đã hết hạn, vui lòng tải lại trang.";
+                timerText.innerText = "Mã QR đã hết hạn (quá 1 phút). Đơn đã bị hủy để nhường phòng.";
+                
+                // Gửi yêu cầu hủy đơn quá hạn và vô hiệu nút
+                fetch('${pageContext.request.contextPath}/api/cancel-expired?code=' + bookingCode, { method: 'POST' });
+                
+                const qrContent = document.getElementById('qrContent');
+                if (qrContent) {
+                    qrContent.innerHTML = '<div class="alert alert-warning border-0 rounded-3 p-3 my-3 small text-dark">' +
+                                          '<i class="bi bi-clock-history me-1 text-danger"></i> ' +
+                                          '<strong>Mã QR đã hết hạn thanh toán (quá 1 phút).</strong><br>' +
+                                          'Đơn đặt phòng này đã tự động hủy để mở lại phòng cho khách khác. Vui lòng tải lại trang nếu muốn đặt lại.' +
+                                          '</div>' +
+                                          '<a href="javascript:location.reload()" class="btn btn-primary btn-sm rounded-pill px-4 mt-2">Tải lại trang</a>';
+                }
                 return;
             }
 

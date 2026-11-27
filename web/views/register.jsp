@@ -12,36 +12,59 @@
             <p class="text-muted small">Tạo tài khoản để quản lý đơn đặt phòng thuận tiện hơn</p>
         </div>
 
-        <c:if test="${not empty error}">
-            <div class="alert alert-danger small py-2 px-3 rounded-3 mb-3">
-                <i class="bi bi-exclamation-circle-fill me-1"></i> ${error}
+        <!-- Thông báo người dùng đã tồn tại -->
+        <c:if test="${not empty sessionScope.exist_user}">
+            <div class="alert alert-danger small py-2 px-3 rounded-3 mb-3 text-center">
+                <i class="bi bi-exclamation-triangle-fill me-1"></i> ${sessionScope.exist_user}
             </div>
         </c:if>
 
         <form action="${pageContext.request.contextPath}/register" method="POST">
             <div class="mb-3">
                 <label class="form-label small fw-semibold text-secondary">Họ và tên</label>
-                <input type="text" name="name" class="form-control" required placeholder="Nguyễn Văn A" value="${name}">
+                <input type="text" name="name" class="form-control" required 
+
             </div>
 
             <div class="mb-3">
                 <label class="form-label small fw-semibold text-secondary">Địa chỉ Email</label>
-                <input type="email" name="email" class="form-control" required placeholder="user@gmail.com" value="${email}">
+                <input type="text" name="email" class="form-control ${not empty sessionScope.err_email ? 'is-invalid' : ''}" 
+                       required 
+
+                <c:if test="${not empty sessionScope.err_email}">
+                    <span class="text-danger small fw-semibold mt-1 d-block">
+                        <i class="bi bi-exclamation-circle me-1"></i>${sessionScope.err_email}
+                    </span>
+                </c:if>
             </div>
 
             <div class="mb-3">
                 <label class="form-label small fw-semibold text-secondary">Số điện thoại</label>
-                <input type="tel" name="phone" class="form-control" required placeholder="0912345678" value="${phone}">
+                <input type="text" name="phone" class="form-control ${not empty sessionScope.err_phone ? 'is-invalid' : ''}" 
+                       required  
+
+                <c:if test="${not empty sessionScope.err_phone}">
+                    <span class="text-danger small fw-semibold mt-1 d-block">
+                        <i class="bi bi-exclamation-circle me-1"></i>${sessionScope.err_phone}
+                    </span>
+                </c:if>
             </div>
 
             <div class="mb-3">
                 <label class="form-label small fw-semibold text-secondary">Mật khẩu</label>
-                <input type="password" name="password" class="form-control" required placeholder="••••••••">
+                <input type="password" name="password" class="form-control" required 
             </div>
 
             <div class="mb-4">
                 <label class="form-label small fw-semibold text-secondary">Xác nhận mật khẩu</label>
-                <input type="password" name="confirmPassword" class="form-control" required placeholder="••••••••">
+                <input type="password" name="repassword" class="form-control ${not empty sessionScope.err_repassword ? 'is-invalid' : ''}" 
+                       required 
+                <c:if test="${not empty sessionScope.err_repassword}">
+                    <span class="text-danger small fw-semibold mt-1 d-block">
+                        <i class="bi bi-exclamation-circle me-1"></i>${sessionScope.err_repassword}
+                    </span>
+                </c:if>
+                       
             </div>
 
             <button type="submit" class="btn btn-success-custom w-100 py-2 fw-bold">

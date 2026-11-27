@@ -23,7 +23,7 @@
                 <label class="form-label small fw-semibold text-secondary">Email hoặc Số điện thoại</label>
                 <div class="input-group">
                     <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-person"></i></span>
-                    <input type="text" name="account" class="form-control border-start-0" required placeholder="admin@homestay.com" value="${account}">
+                    <input type="text" name="account" class="form-control border-start-0" required value="${account}">
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                 <label class="form-label small fw-semibold text-secondary">Mật khẩu</label>
                 <div class="input-group">
                     <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-lock"></i></span>
-                    <input type="password" name="password" class="form-control border-start-0" required placeholder="••••••••">
+                    <input type="password" name="password" class="form-control border-start-0" required >
                 </div>
             </div>
 

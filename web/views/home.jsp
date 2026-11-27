@@ -22,24 +22,24 @@
             <form action="${pageContext.request.contextPath}/rooms" method="GET" class="row g-3 align-items-center">
                 <div class="col-md-3">
                     <label class="form-label small fw-bold text-secondary mb-1">
-                        <i class="bi bi-calendar-event text-primary me-1"></i> Ngày nhận
+                        <i class="bi bi-calendar-event text-success me-1"></i> Ngày nhận
                     </label>
                     <input type="date" name="checkIn" class="form-control rounded-3" required value="${checkIn}">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label small fw-bold text-secondary mb-1">
-                        <i class="bi bi-calendar-check text-primary me-1"></i> Ngày trả
+                        <i class="bi bi-calendar-check text-success me-1"></i> Ngày trả
                     </label>
                     <input type="date" name="checkOut" class="form-control rounded-3" required value="${checkOut}">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label small fw-bold text-secondary mb-1">
-                        <i class="bi bi-people text-primary me-1"></i> Sức chứa
+                        <i class="bi bi-people text-success me-1"></i> Sức chứa
                     </label>
                     <input type="number" name="guests" class="form-control rounded-3" min="1" max="20" value="1" required>
                 </div>
                 <div class="col-md-3 pt-md-4">
-                    <button type="submit" class="btn w-100 py-2 fw-bold text-white rounded-3 shadow-sm d-flex align-items-center justify-content-center gap-2" style="background: #0d8abc; border: none;">
+                    <button type="submit" class="btn w-100 py-2 fw-bold text-white rounded-3 shadow-sm d-flex align-items-center justify-content-center gap-2" style="background: #10b981; border: none;">
                         <i class="bi bi-search"></i> Tìm kiếm
                     </button>
                 </div>

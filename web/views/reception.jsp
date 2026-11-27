@@ -19,8 +19,8 @@
 
     <style>
         :root {
-            --primary: #0ea5e9;
-            --primary-dark: #0284c7;
+            --primary: #10b981;
+            --primary-dark: #059669;
             --dark-color: #0f172a;
             --light-bg: #f8fafc;
             --card-border: #e2e8f0;
@@ -35,7 +35,7 @@
             min-height: 100vh;
         }
         .reception-header {
-            background-color: #0284c7;
+            background-color: #059669;
             height: 56px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.08);
         }
@@ -163,8 +163,8 @@
             border-right: 1px solid #e2e8f0;
         }
         .timeline-header-day.today {
-            background-color: #e0f2fe;
-            color: #0284c7;
+            background-color: #ecfdf5;
+            color: #059669;
             font-weight: 800;
         }
         .timeline-cell-day {
@@ -233,9 +233,9 @@
             background-color: #f8fafc;
         }
         .page-num-btn.active {
-            background-color: #0ea5e9;
+            background-color: #10b981;
             color: #ffffff;
-            border-color: #0ea5e9;
+            border-color: #10b981;
         }
         .page-num-btn:disabled {
             opacity: 0.35;
@@ -305,7 +305,7 @@
         <!-- STATUS LEGEND CARD -->
         <div class="admin-card p-3 mb-4">
             <div class="d-flex flex-wrap align-items-center gap-4 text-sm">
-                <span class="fw-bold text-dark"><i class="bi bi-info-circle me-1 text-primary"></i> Trạng thái phòng:</span>
+                <span class="fw-bold text-dark"><i class="bi bi-info-circle me-1 text-success"></i> Trạng thái phòng:</span>
                 <span class="d-flex align-items-center gap-2">
                     <span class="badge bg-status-empty rounded-pill px-2.5 py-1">Phòng trống</span>
                 </span>
@@ -414,7 +414,7 @@
                         <tbody id="receptionBookingTableBody">
                             <c:forEach var="b" items="${bookings}">
                                 <tr class="reception-booking-row" data-code="${b.code.toLowerCase()}" data-name="${b.guestName.toLowerCase()}">
-                                    <td class="fw-bold text-primary">${b.code}</td>
+                                    <td class="fw-bold text-success">${b.code}</td>
                                     <td>
                                         <div class="fw-semibold text-dark">${b.guestName}</div>
                                         <small class="text-muted">${b.guestPhone}</small>
@@ -476,7 +476,7 @@
                     <!-- Thông tin phòng & khách -->
                     <div class="bg-light p-3 rounded-3 mb-3 border">
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fs-5 fw-bold text-primary" id="detailBookingCode">BK0000</span>
+                            <span class="fs-5 fw-bold text-success" id="detailBookingCode">BK0000</span>
                             <span class="badge" id="detailStatusBadge">Đang ở</span>
                         </div>
                         <div class="row g-2 small">
@@ -512,7 +512,7 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center pt-2 border-top">
                             <span class="fw-bold">Tổng tiền:</span>
-                            <span class="fs-5 fw-extrabold text-primary" id="detailTotalPrice">650,000 VNĐ</span>
+                            <span class="fs-5 fw-extrabold text-success" id="detailTotalPrice">650,000 VNĐ</span>
                         </div>
                     </div>
 
@@ -543,7 +543,7 @@
                     <input type="hidden" name="action" value="walkInBooking">
                     <input type="hidden" name="view" value="${view}">
                     <div class="modal-header border-bottom-0 pb-0">
-                        <h5 class="modal-title fw-bold text-primary">
+                        <h5 class="modal-title fw-bold text-success">
                             <i class="bi bi-person-plus-fill me-1"></i> Đặt phòng cho khách trực tiếp
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -658,7 +658,7 @@
 
                     <div class="modal-footer border-top-0 pt-0">
                         <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Hủy bỏ</button>
-                        <button type="submit" class="btn btn-primary rounded-pill px-4 fw-bold" id="btnSubmitWalkIn">Xác nhận đặt phòng</button>
+                        <button type="submit" class="btn btn-success rounded-pill px-4 fw-bold" id="btnSubmitWalkIn">Xác nhận đặt phòng</button>
                     </div>
                 </form>
             </div>
@@ -1002,7 +1002,7 @@
                         <input type="hidden" name="action" value="checkOut">
                         <input type="hidden" name="bookingId" value="` + b.id + `">
                         <input type="hidden" name="view" value="${view}">
-                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2 shadow-sm">
+                        <button type="submit" class="btn btn-success w-100 fw-bold py-2 shadow-sm">
                             <i class="bi bi-box-arrow-right me-1"></i> Trả phòng & Thanh toán
                         </button>
                     </form>

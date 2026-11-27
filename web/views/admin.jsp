@@ -21,8 +21,8 @@
 
     <style>
         :root {
-            --primary: #0ea5e9;
-            --primary-dark: #0284c7;
+            --primary: #10b981;
+            --primary-dark: #059669;
             --dark-color: #0f172a;
             --light-bg: #f8fafc;
             --card-border: #e2e8f0;
@@ -34,7 +34,7 @@
             min-height: 100vh;
         }
         .admin-header {
-            background-color: #0284c7;
+            background-color: #059669;
             height: 56px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.08);
         }
@@ -113,8 +113,8 @@
             border-bottom: 1px solid #f1f5f9;
         }
         .btn-sky {
-            background-color: #38bdf8;
-            color: #0f172a;
+            background-color: #10b981;
+            color: #ffffff;
             font-weight: 700;
             border: none;
             padding: 8px 18px;
@@ -122,7 +122,7 @@
             transition: background-color 0.2s;
         }
         .btn-sky:hover {
-            background-color: #0ea5e9;
+            background-color: #059669;
             color: #ffffff;
         }
         .sub-tab-btn {
@@ -140,7 +140,7 @@
             transition: all 0.2s;
         }
         .sub-tab-btn.active {
-            background-color: #0ea5e9;
+            background-color: #10b981;
             color: #ffffff;
             font-weight: 700;
         }
@@ -193,9 +193,9 @@
             background-color: #f8fafc;
         }
         .page-num-btn.active {
-            background-color: #0ea5e9;
+            background-color: #10b981;
             color: #ffffff;
-            border-color: #0ea5e9;
+            border-color: #10b981;
         }
         .page-num-btn:disabled {
             opacity: 0.35;
@@ -266,7 +266,7 @@
                 <div class="col-md-4">
                     <div class="admin-stat-card">
                         <div class="admin-stat-label">Phòng đang có khách</div>
-                        <h2 class="admin-stat-value text-primary">${occupied}</h2>
+                        <h2 class="admin-stat-value" style="color: #047857;">${occupied}</h2>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -302,7 +302,7 @@
                         <tbody>
                             <c:forEach var="b" items="${recentBookings}">
                                 <tr>
-                                    <td class="fw-bold text-primary">${b.code}</td>
+                                    <td class="fw-bold text-success">${b.code}</td>
                                     <td>
                                         <div class="fw-semibold text-dark">${b.guestName}</div>
                                         <small class="text-muted">${b.guestPhone}</small>
@@ -318,7 +318,7 @@
                                     <td class="fw-bold text-nowrap">${b.formattedTotal}</td>
                                     <td>
                                         <c:choose>
-                                            <c:when test="${b.status == 'checkedin'}"><span class="badge bg-primary">Đang ở</span></c:when>
+                                            <c:when test="${b.status == 'checkedin'}"><span class="badge" style="background-color: #059669;">Đang ở</span></c:when>
                                             <c:when test="${b.status == 'checkedout'}"><span class="badge bg-secondary">Đã trả phòng</span></c:when>
                                             <c:when test="${b.status == 'confirmed'}"><span class="badge bg-info text-dark">Đã xác nhận</span></c:when>
                                             <c:when test="${b.status == 'cancelled'}"><span class="badge bg-danger">Đã hủy</span></c:when>
@@ -395,7 +395,7 @@
                                     <tr class="room-row">
                                         <td class="fw-bold text-dark">${rm.code}</td>
                                         <td>${rm.roomTypeName}</td>
-                                        <td class="fw-semibold text-primary">
+                                        <td class="fw-semibold text-success">
                                             <fmt:formatNumber value="${rm.price}" pattern="#,###" /> VNĐ
                                         </td>
                                         <td>${rm.area}</td>
@@ -406,7 +406,7 @@
                                         </td>
                                         <td class="text-end">
                                             <!-- Sửa phòng -->
-                                            <button type="button" class="btn btn-sm btn-link text-primary p-1 me-1" title="Chỉnh sửa"
+                                            <button type="button" class="btn btn-sm btn-link text-success p-1 me-1" title="Chỉnh sửa"
                                                     onclick="openEditRoomModal(${rm.id}, '${rm.code}', ${rm.roomTypeId}, '${rm.area}', ${rm.status})">
                                                 <i class="bi bi-pencil-square fs-6"></i>
                                             </button>
@@ -473,7 +473,7 @@
                                     <tr class="type-row">
                                         <td class="font-monospace fw-bold text-secondary">L00${rt.id}</td>
                                         <td class="fw-semibold text-dark">${rt.name}</td>
-                                        <td class="fw-bold text-primary">${rt.formattedPrice}</td>
+                                        <td class="fw-bold text-success">${rt.formattedPrice}</td>
                                         <td>${rt.capacity} người</td>
                                         <td>${rt.formattedBed}</td>
                                         <td>
@@ -481,8 +481,8 @@
                                         </td>
                                         <td class="text-end">
                                             <!-- Sửa loại phòng -->
-                                            <button type="button" class="btn btn-sm btn-link text-primary p-1 me-1" title="Sửa loại phòng"
-                                                    onclick='openEditRoomTypeModal(${rt.id}, "${rt.name}", ${rt.price}, ${rt.capacity}, ${rt.bed}, "${rt.rules}", "${rt.amenities}", `${rt.description}`, "${rt.image}")'>
+                                            <button type="button" class="btn btn-sm btn-link text-success p-1 me-1" title="Sửa loại phòng"
+                                                    onclick='openEditRoomTypeModal(${rt.id}, "${rt.name}", ${rt.price}, ${rt.capacity}, ${rt.bed}, `${rt.description}`, "${rt.image}")'>
                                                 <i class="bi bi-pencil-square fs-6"></i>
                                             </button>
                                             <!-- Xóa loại phòng (Ràng buộc: xóa loại phòng sẽ xóa cả các phòng thuộc loại này) -->
@@ -594,7 +594,7 @@
                         <tbody id="bookingTableBody">
                             <c:forEach var="b" items="${bookings}">
                                 <tr class="booking-row" data-code="${b.code.toLowerCase()}" data-name="${b.guestName.toLowerCase()}">
-                                    <td class="fw-bold text-primary">${b.code}</td>
+                                    <td class="fw-bold text-success">${b.code}</td>
                                     <td>
                                         <div class="fw-semibold text-dark">${b.guestName}</div>
                                         <small class="text-muted">${b.guestPhone}</small>
@@ -682,7 +682,7 @@
                 <div class="col-md-6">
                     <div class="admin-stat-card">
                         <div class="admin-stat-label" id="statRevenueLabel">Doanh thu</div>
-                        <h2 class="admin-stat-value text-primary" id="statRevenueValue">0 VNĐ</h2>
+                        <h2 class="admin-stat-value text-success" id="statRevenueValue">0 VNĐ</h2>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -822,14 +822,6 @@
                                 <label class="form-label small fw-semibold text-secondary">Số giường</label>
                                 <input type="number" name="bed" class="form-control" value="1" required min="1">
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label small fw-semibold text-secondary">Quy định</label>
-                                <input type="text" name="rules" class="form-control" value="Cấm hút thuốc, Giữ yên tĩnh sau 22h" placeholder="Cấm hút thuốc, Giữ trật tự...">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label small fw-semibold text-secondary">Tiện ích</label>
-                                <input type="text" name="amenities" class="form-control" value="Wifi, Điều hòa, Nước nóng, Máy sấy" placeholder="Wifi, Điều hòa, Tủ lạnh...">
-                            </div>
                             <div class="col-12">
                                 <label class="form-label small fw-semibold text-secondary">Mô tả loại phòng</label>
                                 <textarea name="description" class="form-control" rows="2" placeholder="Không gian nghỉ dưỡng tuyệt vời giữa cố đô..."></textarea>
@@ -885,14 +877,6 @@
                             <div class="col-md-6">
                                 <label class="form-label small fw-semibold text-secondary">Số giường</label>
                                 <input type="number" name="bed" id="editTypeBed" class="form-control" required min="1">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label small fw-semibold text-secondary">Quy định</label>
-                                <input type="text" name="rules" id="editTypeRules" class="form-control">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label small fw-semibold text-secondary">Tiện ích</label>
-                                <input type="text" name="amenities" id="editTypeAmenities" class="form-control">
                             </div>
                             <div class="col-12">
                                 <label class="form-label small fw-semibold text-secondary">Mô tả</label>
@@ -951,14 +935,12 @@
         }
 
         // Mở Modal Sửa Loại Phòng
-        function openEditRoomTypeModal(id, name, price, capacity, bed, rules, amenities, desc, image) {
+        function openEditRoomTypeModal(id, name, price, capacity, bed, desc, image) {
             document.getElementById('editTypeId').value = id;
             document.getElementById('editTypeName').value = name;
             document.getElementById('editTypePrice').value = price;
             document.getElementById('editTypeCapacity').value = capacity;
             document.getElementById('editTypeBed').value = bed;
-            document.getElementById('editTypeRules').value = rules || '';
-            document.getElementById('editTypeAmenities').value = amenities || '';
             document.getElementById('editTypeDescription').value = desc || '';
             document.getElementById('editTypeOldImage').value = image || '';
             document.getElementById('editTypeImagePreview').src = image || 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1000';
@@ -1184,8 +1166,8 @@
                     datasets: [{
                         label: 'Doanh thu (VNĐ)',
                         data: chartValues,
-                        backgroundColor: '#0ea5e9',
-                        hoverBackgroundColor: '#0284c7',
+                        backgroundColor: '#10b981',
+                        hoverBackgroundColor: '#059669',
                         borderRadius: 6,
                         maxBarThickness: 36
                     }]

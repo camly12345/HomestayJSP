@@ -45,7 +45,7 @@
         margin-bottom: 24px;
     }
     .btn-action-primary {
-        background: #0ea5e9;
+        background: #10b981;
         color: #ffffff;
         border: none;
         border-radius: 12px;
@@ -54,7 +54,7 @@
         transition: all 0.2s;
     }
     .btn-action-primary:hover {
-        background: #0284c7;
+        background: #059669;
         color: #ffffff;
     }
 </style>
@@ -74,10 +74,10 @@
         <!-- MÃ ĐẶT PHÒNG & TRẠNG THÁI THANH TOÁN -->
         <div class="booking-code-box">
             <div class="d-flex align-items-center gap-3">
-                <div class="bg-white border rounded-3 p-2 text-primary fw-bold">#</div>
+                <div class="bg-white border rounded-3 p-2 text-success fw-bold">#</div>
                 <div class="text-start">
                     <span class="text-muted d-block" style="font-size: 0.75rem; text-transform: uppercase;">MÃ ĐẶT PHÒNG</span>
-                    <strong class="text-primary fs-5">${booking.code}</strong>
+                    <strong class="text-success fs-5">${booking.code}</strong>
                 </div>
             </div>
             <div>
@@ -95,7 +95,7 @@
             <!-- Cột trái: Thông tin khách hàng -->
             <div class="col-md-6 border-end">
                 <h6 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
-                    <i class="bi bi-person-fill text-primary"></i> Thông tin khách hàng
+                    <i class="bi bi-person-fill text-success"></i> Thông tin khách hàng
                 </h6>
                 <div class="small text-secondary mb-2">
                     <span>Họ và tên:</span>
@@ -118,7 +118,7 @@
             <!-- Cột phải: Chi tiết thanh toán -->
             <div class="col-md-6">
                 <h6 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
-                    <i class="bi bi-credit-card-fill text-primary"></i> Chi tiết thanh toán
+                    <i class="bi bi-credit-card-fill text-success"></i> Chi tiết thanh toán
                 </h6>
                 <div class="small text-secondary mb-2 d-flex justify-content-between">
                     <span>Hình thức:</span>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="small text-secondary mb-3 d-flex justify-content-between align-items-center">
                     <span>Tổng tiền:</span>
-                    <span class="fs-5 fw-bold" style="color: #0ea5e9;">
+                    <span class="fs-5 fw-bold" style="color: #059669;">
                         <fmt:formatNumber value="${booking.totalPrice}" pattern="#,###" /> VNĐ
                     </span>
                 </div>
@@ -144,7 +144,7 @@
         <!-- CHI TIẾT LƯU TRÚ -->
         <div class="bg-light rounded-4 p-3 text-start mb-4">
             <h6 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
-                <i class="bi bi-calendar-check-fill text-primary"></i> Chi tiết lưu trú
+                <i class="bi bi-calendar-check-fill text-success"></i> Chi tiết lưu trú
             </h6>
             <div class="row g-3 small">
                 <div class="col-6 col-sm-3">
@@ -166,7 +166,7 @@
             </div>
             <div class="border-top mt-3 pt-2 d-flex justify-content-between small">
                 <span>Tổng thời gian lưu trú:</span>
-                <span class="badge bg-white text-primary border fw-bold px-2 py-1">${booking.nights} Ngày</span>
+                <span class="badge bg-white text-success border fw-bold px-2 py-1">${booking.nights} Ngày</span>
             </div>
         </div>
 

@@ -17,7 +17,7 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     }
     .booking-title {
-        color: #0b4a6f;
+        color: #065f46;
         font-weight: 700;
         font-size: 1.15rem;
     }
@@ -30,8 +30,8 @@
         transition: all 0.2s;
     }
     .custom-input:focus {
-        border-color: #0d8abc;
-        box-shadow: 0 0 0 3px rgba(13, 138, 188, 0.12);
+        border-color: #10b981;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
         background-color: #ffffff;
     }
     .custom-input[readonly] {
@@ -51,21 +51,21 @@
         gap: 12px;
     }
     .pay-option:hover {
-        border-color: #0ea5e9;
-        background-color: #f0f9ff;
+        border-color: #10b981;
+        background-color: #f0fdf4;
     }
     .pay-option.selected {
-        border-color: #0ea5e9;
-        background-color: #f0f9ff;
-        box-shadow: 0 2px 10px rgba(14, 165, 233, 0.12);
+        border-color: #10b981;
+        background-color: #f0fdf4;
+        box-shadow: 0 2px 10px rgba(16, 185, 129, 0.15);
     }
     .pay-option input[type="radio"] {
         width: 18px;
         height: 18px;
-        accent-color: #0ea5e9;
+        accent-color: #10b981;
     }
     .btn-submit-booking {
-        background: #0d8abc;
+        background: #10b981;
         border: none;
         color: #ffffff;
         font-weight: 700;
@@ -74,16 +74,16 @@
         font-size: 1rem;
         width: 100%;
         transition: all 0.2s;
-        box-shadow: 0 4px 12px rgba(13, 138, 188, 0.25);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
     }
     .btn-submit-booking:hover {
-        background: #09739d;
+        background: #059669;
         transform: translateY(-1px);
-        box-shadow: 0 6px 16px rgba(13, 138, 188, 0.35);
+        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
     }
     .room-badge-pill {
-        background: #e0f2fe;
-        color: #0369a1;
+        background: #d1fae5;
+        color: #065f46;
         padding: 4px 12px;
         border-radius: 20px;
         font-weight: 600;
@@ -93,8 +93,8 @@
         gap: 6px;
     }
     .qr-container-box {
-        border: 1.5px solid #bae6fd;
-        background: #f0f9ff;
+        border: 1.5px solid #a7f3d0;
+        background: #f0fdf4;
         border-radius: 18px;
         padding: 24px;
         text-align: center;
@@ -141,7 +141,7 @@
                     <!-- KHỐI 1: THÔNG TIN KHÁCH HÀNG -->
                     <div class="booking-card p-4 mb-4">
                         <div class="d-flex align-items-center gap-2 mb-3">
-                            <i class="bi bi-person-lines-fill text-primary fs-5"></i>
+                            <i class="bi bi-person-lines-fill text-success fs-5"></i>
                             <h5 class="booking-title mb-0">Điền thông tin đặt phòng</h5>
                         </div>
 
@@ -180,7 +180,7 @@
                     <!-- KHỐI 2: PHƯƠNG THỨC THANH TOÁN -->
                     <div class="booking-card p-4">
                         <div class="d-flex align-items-center gap-2 mb-3">
-                            <i class="bi bi-wallet2 text-primary fs-5"></i>
+                            <i class="bi bi-wallet2 text-success fs-5"></i>
                             <h5 class="booking-title mb-0">Phương thức thanh toán</h5>
                         </div>
 
@@ -196,19 +196,19 @@
                         <label class="pay-option" id="optTransfer">
                             <input type="radio" name="payMethod" value="transfer" onchange="togglePayment('transfer')">
                             <div>
-                                <div class="fw-bold text-dark"><i class="bi bi-qr-code text-primary me-2"></i>Chuyển khoản (100%)</div>
+                                <div class="fw-bold text-dark"><i class="bi bi-qr-code text-success me-2"></i>Chuyển khoản (100%)</div>
                             </div>
                         </label>
 
                         <!-- KHUNG HIỂN THỊ MÃ QR KHI CHỌN CHUYỂN KHOẢN -->
                         <div id="qrSection" class="qr-container-box" style="display: none;">
-                            <div class="fw-bold text-primary mb-2">
+                            <div class="fw-bold text-success mb-2">
                                 <i class="bi bi-qr-code-scan me-1"></i> Quét mã QR này để Chuyển khoản
                             </div>
                             
                             <!-- Loading spinner trong lúc chờ gọi PayOS -->
                             <div id="qrLoading" class="py-4">
-                                <div class="spinner-border text-primary" role="status"></div>
+                                <div class="spinner-border text-success" role="status"></div>
                                 <div class="small text-muted mt-2">Đang khởi tạo mã QR thanh toán PayOS...</div>
                             </div>
 
@@ -221,7 +221,7 @@
                                 <div class="bg-white rounded-3 p-3 mb-3 border d-inline-block text-start w-100" style="max-width: 400px;">
                                     <div class="d-flex justify-content-between mb-1 small">
                                         <span class="text-secondary">Mã đơn hàng:</span>
-                                        <strong class="text-primary font-monospace" id="txtOrderCode">---</strong>
+                                        <strong class="text-success font-monospace" id="txtOrderCode">---</strong>
                                     </div>
                                     <div class="d-flex justify-content-between small">
                                         <span class="text-secondary">Số tiền:</span>
@@ -230,7 +230,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <a id="payOsCheckoutLink" href="#" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                    <a id="payOsCheckoutLink" href="#" target="_blank" class="btn btn-outline-success btn-sm rounded-pill px-3">
                                         <i class="bi bi-box-arrow-up-right me-1"></i> Mở trang thanh toán PayOS
                                     </a>
                                 </div>
@@ -289,7 +289,7 @@
 
                         <div class="d-flex justify-content-between align-items-center pt-2 mb-4">
                             <span class="fw-bold fs-6 text-dark">Tổng thanh toán</span>
-                            <span class="fs-4 fw-bold" style="color: #0ea5e9;">
+                            <span class="fs-4 fw-bold" style="color: #059669;">
                                 <fmt:formatNumber value="${estimatedTotal}" pattern="#,###" /> VNĐ
                             </span>
                         </div>
@@ -440,7 +440,7 @@
                                           '<strong>Mã QR đã hết hạn thanh toán (quá 1 phút).</strong><br>' +
                                           'Đơn đặt phòng này đã tự động hủy để mở lại phòng cho khách khác. Vui lòng tải lại trang nếu muốn đặt lại.' +
                                           '</div>' +
-                                          '<a href="javascript:location.reload()" class="btn btn-primary btn-sm rounded-pill px-4 mt-2">Tải lại trang</a>';
+                                          '<a href="javascript:location.reload()" class="btn btn-success btn-sm rounded-pill px-4 mt-2">Tải lại trang</a>';
                 }
                 return;
             }

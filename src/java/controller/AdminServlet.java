@@ -180,12 +180,10 @@ public class AdminServlet extends HttpServlet {
                 double price = Double.parseDouble(request.getParameter("price"));
                 int capacity = Integer.parseInt(request.getParameter("capacity"));
                 int bed = Integer.parseInt(request.getParameter("bed"));
-                String rules = request.getParameter("rules");
-                String amenities = request.getParameter("amenities");
                 String description = request.getParameter("description");
                 String imageUrl = handleFileUpload(request, "imageFile", request.getParameter("image"));
 
-                roomTypeDao.insert(new RoomType(0, name, description, price, capacity, bed, imageUrl, rules, amenities));
+                roomTypeDao.insert(new RoomType(0, name, description, price, capacity, bed, imageUrl));
                 session.setAttribute("adminSuccess", "Thêm loại phòng mới thành công!");
                 tab = "rooms";
                 subTab = "roomTypes";
@@ -196,13 +194,11 @@ public class AdminServlet extends HttpServlet {
                 double price = Double.parseDouble(request.getParameter("price"));
                 int capacity = Integer.parseInt(request.getParameter("capacity"));
                 int bed = Integer.parseInt(request.getParameter("bed"));
-                String rules = request.getParameter("rules");
-                String amenities = request.getParameter("amenities");
                 String description = request.getParameter("description");
                 String oldImage = request.getParameter("oldImage");
                 String imageUrl = handleFileUpload(request, "imageFile", oldImage);
 
-                roomTypeDao.update(new RoomType(id, name, description, price, capacity, bed, imageUrl, rules, amenities));
+                roomTypeDao.update(new RoomType(id, name, description, price, capacity, bed, imageUrl));
                 session.setAttribute("adminSuccess", "Cập nhật loại phòng thành công!");
                 tab = "rooms";
                 subTab = "roomTypes";

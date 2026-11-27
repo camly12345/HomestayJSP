@@ -66,7 +66,7 @@
                                     </td>
                                     <td>
                                         <c:choose>
-                                            <c:when test="${b.status == 'checkedin'}"><span class="badge bg-primary">Đang ở</span></c:when>
+                                            <c:when test="${b.status == 'checkedin'}"><span class="badge" style="background-color: #059669;">Đang ở</span></c:when>
                                             <c:when test="${b.status == 'checkedout'}"><span class="badge bg-secondary">Đã trả phòng</span></c:when>
                                             <c:when test="${b.status == 'confirmed'}"><span class="badge bg-info text-dark">Đã xác nhận</span></c:when>
                                             <c:when test="${b.status == 'cancelled'}"><span class="badge bg-danger">Đã hủy</span></c:when>

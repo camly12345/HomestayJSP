@@ -50,7 +50,7 @@
         box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
     .btn-search-room {
-        background: #0d8abc;
+        background: #10b981;
         color: #ffffff;
         font-weight: 600;
         border: none;
@@ -59,11 +59,11 @@
         transition: all 0.2s;
     }
     .btn-search-room:hover {
-        background: #09739d;
+        background: #059669;
         color: #ffffff;
     }
     .btn-detail-room {
-        background: #0d8abc;
+        background: #10b981;
         color: #ffffff;
         font-weight: 600;
         border: none;
@@ -72,12 +72,12 @@
         transition: all 0.2s;
     }
     .btn-detail-room:hover {
-        background: #09739d;
+        background: #059669;
         color: #ffffff;
     }
     .tag-facility {
-        background: #f0f9ff;
-        color: #0284c7;
+        background: #ecfdf5;
+        color: #059669;
         font-size: 0.8rem;
         padding: 4px 10px;
         border-radius: 8px;
@@ -101,21 +101,21 @@
             <form action="${pageContext.request.contextPath}/rooms" method="GET" class="row g-3 align-items-center">
                 <div class="col-md-3">
                     <label class="form-label small fw-bold text-secondary mb-1">
-                        <i class="bi bi-calendar-event text-primary me-1"></i> Ngày nhận
+                        <i class="bi bi-calendar-event text-success me-1"></i> Ngày nhận
                     </label>
                     <input type="date" id="searchCheckIn" name="checkIn" class="form-control rounded-3" 
                            value="${checkIn}" required>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label small fw-bold text-secondary mb-1">
-                        <i class="bi bi-calendar-check text-primary me-1"></i> Ngày trả
+                        <i class="bi bi-calendar-check text-success me-1"></i> Ngày trả
                     </label>
                     <input type="date" id="searchCheckOut" name="checkOut" class="form-control rounded-3" 
                            value="${checkOut}" required>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label small fw-bold text-secondary mb-1">
-                        <i class="bi bi-people text-primary me-1"></i> Sức chứa
+                        <i class="bi bi-people text-success me-1"></i> Sức chứa
                     </label>
                     <input type="number" name="guests" class="form-control rounded-3" min="1" max="20" 
                            value="${not empty guests ? guests : 1}" required>
@@ -156,7 +156,7 @@
                                             </div>
                                         </div>
                                         <div class="text-md-end mb-3 mb-md-0">
-                                            <h3 class="fw-bold mb-0" style="color: #0d8abc;">
+                                            <h3 class="fw-bold mb-0" style="color: #059669;">
                                                 <fmt:formatNumber value="${rt.price}" pattern="#,###" />đ
                                             </h3>
                                             <small class="text-muted">/ Đêm</small>
@@ -195,7 +195,7 @@
                             từ ngày <strong>${checkIn}</strong> đến <strong>${checkOut}</strong>.
                         </p>
                         <div>
-                            <a href="${pageContext.request.contextPath}/rooms" class="btn btn-outline-primary rounded-pill px-4">
+                            <a href="${pageContext.request.contextPath}/rooms" class="btn btn-outline-success rounded-pill px-4">
                                 <i class="bi bi-arrow-clockwise me-1"></i> Xem tất cả phòng
                             </a>
                         </div>

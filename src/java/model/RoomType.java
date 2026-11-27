@@ -12,16 +12,10 @@ public class RoomType {
     private int capacity;
     private int bed;
     private String image;
-    private String rules;
-    private String amenities;
 
     public RoomType() {}
 
     public RoomType(int id, String name, String description, double price, int capacity, int bed, String image) {
-        this(id, name, description, price, capacity, bed, image, "Cấm hút thuốc", "Wifi, Điều hòa");
-    }
-
-    public RoomType(int id, String name, String description, double price, int capacity, int bed, String image, String rules, String amenities) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -29,8 +23,6 @@ public class RoomType {
         this.capacity = capacity;
         this.bed = bed;
         this.image = image;
-        this.rules = rules;
-        this.amenities = amenities;
     }
 
     public RoomType(ResultSet rs) throws SQLException {
@@ -41,16 +33,6 @@ public class RoomType {
         this.capacity = rs.getInt("capacity");
         this.bed = rs.getInt("bed");
         this.image = rs.getString("image");
-        try {
-            this.rules = rs.getString("rules");
-        } catch (Exception ignored) {
-            this.rules = "Cấm hút thuốc";
-        }
-        try {
-            this.amenities = rs.getString("amenities");
-        } catch (Exception ignored) {
-            this.amenities = "Wifi, Điều hòa";
-        }
     }
 
     public int getId() { return id; }
@@ -71,14 +53,27 @@ public class RoomType {
     public int getBed() { return bed; }
     public void setBed(int bed) { this.bed = bed; }
 
-    public String getImage() { return image != null ? image : ""; }
+    public String getImage() {
+        if (image == null || image.trim().isEmpty()) {
+            return "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1000";
+        }
+        String img = image.trim();
+        // Xử lý tự động nếu người dùng vô tình lưu đường dẫn tuyệt đối của máy tính (C:\...)
+        if (img.startsWith("C:") || img.startsWith("c:") || img.contains("\\")) {
+            int lastSlash = Math.max(img.lastIndexOf('\\'), img.lastIndexOf('/'));
+            String fileName = (lastSlash >= 0) ? img.substring(lastSlash + 1) : img;
+            if (!fileName.contains(".")) {
+                fileName += ".jpg";
+            }
+            return "/Homestay/images/rooms/" + fileName;
+        }
+        if (img.startsWith("http://") || img.startsWith("https://") || img.startsWith("/")) {
+            return img;
+        }
+        return "/Homestay/" + img;
+    }
+
     public void setImage(String image) { this.image = image; }
-
-    public String getRules() { return rules != null ? rules : "Cấm hút thuốc"; }
-    public void setRules(String rules) { this.rules = rules; }
-
-    public String getAmenities() { return amenities != null ? amenities : "Wifi, Điều hòa"; }
-    public void setAmenities(String amenities) { this.amenities = amenities; }
 
     public String getFormattedPrice() {
         return API.formatCurrency(this.price);

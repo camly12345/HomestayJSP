@@ -96,13 +96,13 @@
                     <div class="row g-2 mb-3">
                         <div class="col-6">
                             <label class="form-label small fw-semibold text-secondary">
-                                <i class="bi bi-calendar-event text-primary me-1"></i> Ngày nhận
+                                <i class="bi bi-calendar-event text-success me-1"></i> Ngày nhận
                             </label>
                             <input type="date" id="detailCheckIn" name="checkIn" class="form-control rounded-3" required value="${checkIn}">
                         </div>
                         <div class="col-6">
                             <label class="form-label small fw-semibold text-secondary">
-                                <i class="bi bi-calendar-check text-primary me-1"></i> Ngày trả
+                                <i class="bi bi-calendar-check text-success me-1"></i> Ngày trả
                             </label>
                             <input type="date" id="detailCheckOut" name="checkOut" class="form-control rounded-3" required value="${checkOut}">
                         </div>
@@ -110,7 +110,7 @@
 
                     <div class="mb-3">
                         <label class="form-label small fw-semibold text-secondary">
-                            <i class="bi bi-door-closed text-primary me-1"></i> Loại phòng
+                            <i class="bi bi-door-closed text-success me-1"></i> Loại phòng
                         </label>
                         <input type="text" class="form-control rounded-3 bg-light text-dark fw-bold" value="${roomType.name}" readonly>
                     </div>
@@ -118,7 +118,7 @@
                     <div class="mb-3">
                         <div class="d-flex justify-content-between">
                             <label class="form-label small fw-semibold text-secondary">
-                                <i class="bi bi-people text-primary me-1"></i> Số lượng khách
+                                <i class="bi bi-people text-success me-1"></i> Số lượng khách
                             </label>
                             <span class="text-muted small">Tối đa: ${roomType.capacity} khách</span>
                         </div>
@@ -142,7 +142,7 @@
                                             <span>Tạm hết phòng trong khoảng thời gian này.</span>
                                         </div>
                                     </c:otherwise>
-                                </c:choose>
+                                    </c:choose>
                             </c:when>
                             <c:otherwise>
                                 <!-- Khi chưa chọn ngày thì để trống, không hiện sẵn badge -->
@@ -151,7 +151,7 @@
                     </div>
 
                     <div id="actionButtonBox">
-                        <button type="submit" id="btnSubmitBooking" class="btn w-100 py-3 fw-bold rounded-3 text-white shadow-sm" style="background: #0d8abc;">
+                        <button type="submit" id="btnSubmitBooking" class="btn w-100 py-3 fw-bold rounded-3 text-white shadow-sm" style="background: #10b981;">
                             Tiến hành đặt phòng
                         </button>
                     </div>
@@ -180,7 +180,7 @@
             if (!inDate || !outDate) {
                 // Người dùng chưa chọn đủ ngày -> Ẩn thông báo và mở nút
                 alertBox.innerHTML = '';
-                actionBox.innerHTML = '<button type="submit" id="btnSubmitBooking" class="btn w-100 py-3 fw-bold rounded-3 text-white shadow-sm" style="background: #0d8abc;">Tiến hành đặt phòng</button>';
+                actionBox.innerHTML = '<button type="submit" id="btnSubmitBooking" class="btn w-100 py-3 fw-bold rounded-3 text-white shadow-sm" style="background: #10b981;">Tiến hành đặt phòng</button>';
                 return;
             }
 
@@ -194,7 +194,7 @@
                                                  '<i class="bi bi-door-open-fill fs-5"></i>' +
                                                  '<span>Còn <strong>' + count + '</strong> phòng trống khả dụng.</span>' +
                                                  '</div>';
-                            actionBox.innerHTML = '<button type="submit" id="btnSubmitBooking" class="btn w-100 py-3 fw-bold rounded-3 text-white shadow-sm" style="background: #0d8abc;">' +
+                            actionBox.innerHTML = '<button type="submit" id="btnSubmitBooking" class="btn w-100 py-3 fw-bold rounded-3 text-white shadow-sm" style="background: #10b981;">' +
                                                   'Tiến hành đặt phòng' +
                                                   '</button>';
                             if (topBadge) {
